@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 
 import {getPublishedItem} from '../../actions/published';
 import DefaultPublished from './components/Default';
-//import CmsAnalysis from './components/CmsAnalysis';
+import CmsPublished from './components/CmsAnalysis';
 import LhcbPublished from './components/LhcbAnalysis';
 
 export class Published extends React.Component {
@@ -23,7 +23,7 @@ export class Published extends React.Component {
       switch (item.$ana_type) {
         case 'cms-analysis':
           return (
-            <DefaultPublished item={item} />
+            <CmsPublished item={item} />
           );
         case 'lhcb':
           return (
