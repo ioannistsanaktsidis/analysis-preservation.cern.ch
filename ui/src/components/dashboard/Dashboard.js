@@ -91,8 +91,8 @@ export class Dashboard extends React.Component {
             {
               this.props.currentUser.get('depositGroups') &&
               this.props.currentUser.get('depositGroups').map ?
-              this.props.currentUser.get('depositGroups').map(group => (
-                <CustomTile key={group} props={this.props} count={this.getDraftCount(group.get('deposit_group'))} group={group} name={group.get("name")}/>
+              this.props.currentUser.get('depositGroups').map((group, index) => (
+                <CustomTile key={`${group}-${index}`} props={this.props} count={this.getDraftCount(group.get('deposit_group'))} group={group} name={group.get("name")}/>
               )) :
               <Box> No available schemas.</Box>
             }

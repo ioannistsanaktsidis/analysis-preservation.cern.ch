@@ -1,4 +1,5 @@
 import React from 'react';
+import {connect} from 'react-redux';
 
 import {
   Box,
@@ -16,6 +17,7 @@ import PieChartIcon from 'grommet/components/icons/base/PieChart';
 import BookIcon from 'grommet/components/icons/base/Book';
 import NoteIcon from 'grommet/components/icons/base/Note';
 import MoreIcon from 'grommet/components/icons/base/More';
+import DownloadIcon from 'grommet/components/icons/base/Download';
 
 import prettyBytes from 'pretty-bytes';
 
@@ -45,6 +47,7 @@ class FileItem extends React.Component {
 
   render() {
     let {file} = this.props;
+    let bucket_url = this.props.links ? this.props.links.get('bucket'):null;
     return (
       <ListItem
         key={file.key}
@@ -58,7 +61,7 @@ class FileItem extends React.Component {
               {this._getIcon(file.type)}
             </Box>
             <Box justify="center" flex={true} width="100" size="small" margin={{right: "small"}}>
-              <Label justify="center" margin="none" size="small" truncate={true}>{file.key}</Label>
+              <Label justify="center" margin="none" size="small" truncate={true}>{file.key}<strong> ({file.size ? prettyBytes(parseInt(file.size)) : "No size"})</strong></Label>
             </Box>
             {
               file.status ?
@@ -66,28 +69,29 @@ class FileItem extends React.Component {
                 <Status size="small" value={uploadStatusMap[file.status]} />
               </Box> : null
             }
+            <Box justify="end">
+              <Anchor icon={<DownloadIcon />}
+                  href={`${bucket_url}/${file.key}`} />
+            </Box>
           </Box>
-
-          <Menu
-            responsive={true}
-            size="small"
-            dropAlign={{right: "right", top: "bottom"}}
-            icon={<MoreIcon size="xsmall" />}>
-              <Box  justify="center" margin={{right: "small"}}>
-                {file.size ? prettyBytes(parseInt(file.size)) : "No size"}
-              </Box>
-              <Anchor href="#" className="active">
-                Download
-              </Anchor>
-              <Anchor href="#">
-                More Info
-              </Anchor>
-          </Menu>
         </Box>
       </ListItem>
     );
   }
 }
 
-export default FileItem;
+function mapStateToProps(state) {
+  return {
+    links: state.drafts.getIn(['current_item','links'])
+  };
+}
+
+function mapDispatchToProps() {
+  return {};
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(FileItem);
 
