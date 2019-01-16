@@ -66,7 +66,7 @@ intervals==0.8.1          # via wtforms-components
 invenio-access==1.0.1     # via invenio, invenio-accounts-rest
 invenio-accounts-rest==1.0.0a4
 invenio-accounts==1.0.1   # via invenio, invenio-access, invenio-accounts-rest, invenio-oauth2server, invenio-oauthclient, invenio-userprofiles
-invenio-admin==1.0.0      # via invenio
+invenio-admin==1.1.1     # via invenio
 invenio-app==1.0.0        # via invenio
 invenio-assets==1.0.0     # via invenio, invenio-search-ui, invenio-theme
 invenio-base==1.0.1       # via invenio, invenio-app

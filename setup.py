@@ -77,12 +77,13 @@ install_requires = [
     # 'reana-commons' and 'invenio-files-rest'
     'fs==0.5.4',
     'invenio-accounts-rest>=1.0.0a4',
+    'invenio-admin>=1.1.1',
     'invenio-oauthclient>=1.0.0',
     'invenio-userprofiles>=1.0.0',
     'invenio-query-parser>=0.3.0',
     'invenio[{db},{es},base,auth,metadata]~={version}'.format(
         db=DATABASE, es=ELASTICSEARCH, version=INVENIO_VERSION),
-
+    ''
     'uWSGI==2.0.17',
     'uwsgi-tools==1.1.1',
     'uwsgitop==0.10',
